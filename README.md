@@ -48,7 +48,7 @@ Just execute the following command:
 $ create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
 
 Create the ConfigMap. ConfiMap will inject the Kafka IP/Port into the spring boot microservice at start time.
-$ kubectl create -f nasrin-micro-io.yaml
+$ kubectl create -f kubernetes/nasrin-micro-io.yaml
 
 Create a kuberenetes deployment using kubectl:
 $ kubectl create deployment nasrin-micro-io --image=nasrin-micro-io/version:v0.1
