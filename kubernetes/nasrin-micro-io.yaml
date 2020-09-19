@@ -1,0 +1,7 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nasrin-micro-io
+  namespace: default
+data:
+  spring.cloud.stream.kafka.binder.brokers: 10.0.2.2:9092

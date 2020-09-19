@@ -1,9 +1,17 @@
 spring:
+  application:
+    name: nasrin-micro-io
   cloud:
+    kubernetes:
+      config:
+        enabled: true
+        name: nasrin-micro-io
+        namespace: default
+      reload:
+        enabled: true
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
           autoCreateTopics: true
           replication-factor: 1
       bindings:

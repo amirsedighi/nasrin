@@ -11,8 +11,8 @@ $ mvn spring-boot:run
 
 ## Common Docker Commands
 
-### Buildig Image
-$ docker build -t nasrin-micro-io/version:v0.1 .
+### Buildig Image - overriding the existed one
+$ docker build --no-cache -t nasrin-micro-io/version:v0.1 .
 
 ### Run by Docker
 $ docker run -p 5000:8080 nasrin-micro-io/version:v0.1
@@ -40,6 +40,16 @@ $ minikube status
 To make sure minikube will search for local cached images:
 $ eval $(minikube docker-env)
 
+Creating an updated image:
+$ docker build --no-cache -t nasrin-micro-io/version:v0.1 .
+
+Spring Cloud Kubernetes requires access to the Kubernetes API in order to be able to retrieve a list of addresses for pods running for a single service. 
+Just execute the following command:
+$ create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
+
+Create the ConfigMap. ConfiMap will inject the Kafka IP/Port into the spring boot microservice at start time.
+$ kubectl create -f nasrin-micro-io.yaml
+
 Create a kuberenetes deployment using kubectl:
 $ kubectl create deployment nasrin-micro-io --image=nasrin-micro-io/version:v0.1
 
@@ -53,3 +63,7 @@ $ kubectl expose deployment nasrin-micro-io --type=LoadBalancer --port=8080
 service/nasrin-micro-io exposed
 
 $ minikube service nasrin-micro-io
+
+$ curl http://192.168.99.117:32406/event?payload=HelloWorld
+
+
