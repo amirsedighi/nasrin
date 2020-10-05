@@ -1,0 +1,2 @@
+minikube addons enable logviewer
+

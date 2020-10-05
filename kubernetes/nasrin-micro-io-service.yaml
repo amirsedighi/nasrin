@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nasrin-micro-io
+  namespace: default
+  labels:
+    app: nasrin-micro-io
+  managedFields:
+    - manager: kubectl
+      operation: Update
+spec:
+  ports:
+    - name: http-nasrin-micro-io
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: nasrin-micro-io
